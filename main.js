@@ -113,3 +113,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
   if (getCookie('minDistance')) document.getElementById('minDistance').value = getCookie('minDistance');
   if (getCookie('maxDistance')) document.getElementById('maxDistance').value = getCookie('maxDistance');
 });
+
+document.getElementById('getCurrentLocation').addEventListener('click', function() {
+  if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      document.getElementById('latitude').value = position.coords.latitude.toFixed(6);
+      document.getElementById('longitude').value = position.coords.longitude.toFixed(6);
+    }, function(error) {
+      console.error("Error Code = " + error.code + " - " + error.message);
+      alert('位置情報の取得に失敗しました。');
+    });
+  } else {
+    alert('お使いのブラウザでは位置情報の取得がサポートされていません。');
+  }
+});
