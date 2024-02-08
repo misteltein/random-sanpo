@@ -101,10 +101,10 @@ document.getElementById('locationForm').addEventListener('submit', function (eve
   };
 
   // 入力値をクッキーに保存
-  setCookie('latitude', document.getElementById('latitude').value, 30);
-  setCookie('longitude', document.getElementById('longitude').value, 30);
-  setCookie('minDistance', document.getElementById('minDistance').value, 30);
-  setCookie('maxDistance', document.getElementById('maxDistance').value, 30);
+  setCookie('latitude', document.getElementById('latitude').value, 365);
+  setCookie('longitude', document.getElementById('longitude').value, 365);
+  setCookie('minDistance', document.getElementById('minDistance').value, 365);
+  setCookie('maxDistance', document.getElementById('maxDistance').value, 365);
 });
 
 document.addEventListener('DOMContentLoaded', (event) => {
