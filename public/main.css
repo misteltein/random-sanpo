@@ -1,0 +1,86 @@
+body {
+    margin: 60px 0;
+}
+
+h2 {
+    text-align: center; /* h2タグを中央寄せ */
+    margin-bottom: 20px; /* 下部にマージンを設定して、フォームとの間隔を作る */
+}
+
+form#locationForm {
+    width: 500px; /* フォームの最大幅を設定 */
+    margin: 0 auto; /* フォームを中央に配置 */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+fieldset {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+legend {
+    padding: 0 5px;
+    font-weight: bold;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: calc(100% - 16px); /* 入力フィールドの幅を親要素に合わせて調整 */
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* ボーダーとパディングを幅に含める */
+}
+
+button {
+    display: block; /* ボタンをブロック要素として設定 */
+    width: auto; /* ボタンの幅を自動調整 */
+    padding: 10px 20px;
+    margin: 20px auto 0; /* 上部にマージンを設定し、中央に配置 */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#result {
+}
+
+#result .wrapper {
+    text-align: center;
+    padding: 10px;
+    margin: 20px auto; /* 上下のマージンを20pxに設定し、左右のマージンをautoで中央寄せ */
+    width: 400px; /* 結果表示部分の最大幅を設定 */
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    box-sizing: border-box; /* パディングとボーダーを幅に含める */
+}
+
+#result div {
+    font-weight: bold;
+}
+
+#result ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#result li {
+    margin-bottom: 5px;
+}
+
+
