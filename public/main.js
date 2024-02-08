@@ -1,3 +1,23 @@
+function getCookie(name) {
+  const nameEQ = `${name}=`;
+  const ca = document.cookie.split(';');
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i].trim();
+    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length);
+  }
+  return null;
+}
+
+function setCookie(name, value, days) {
+  let expires = "";
+  if (days) {
+    const date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    expires = "; expires=" + date.toUTCString();
+  }
+  document.cookie = `${name}=${value || ""}${expires}; path=/`;
+}
+
 document.getElementById('locationForm').addEventListener('submit', function(event) {
   event.preventDefault(); // フォームの送信をキャンセル
 
@@ -52,5 +72,16 @@ document.getElementById('locationForm').addEventListener('submit', function(even
   } while (distance < minDistance || distance > maxDistance);
 
   document.getElementById('result').textContent = `生成された地点: 緯度 ${newPoint.lat}, 経度 ${newPoint.lng}, 距離: ${distance.toFixed(2)} km`;
+  // 入力値をクッキーに保存
+  setCookie('latitude', document.getElementById('latitude').value, 30);
+  setCookie('longitude', document.getElementById('longitude').value, 30);
+  setCookie('minDistance', document.getElementById('minDistance').value, 30);
+  setCookie('maxDistance', document.getElementById('maxDistance').value, 30);
 });
 
+document.addEventListener('DOMContentLoaded', (event) => {
+  if(getCookie('latitude')) document.getElementById('latitude').value = getCookie('latitude');
+  if(getCookie('longitude')) document.getElementById('longitude').value = getCookie('longitude');
+  if(getCookie('minDistance')) document.getElementById('minDistance').value = getCookie('minDistance');
+  if(getCookie('maxDistance')) document.getElementById('maxDistance').value = getCookie('maxDistance');
+});
