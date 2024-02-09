@@ -3,13 +3,13 @@ body {
 }
 
 h2 {
-    text-align: center; /* h2タグを中央寄せ */
-    margin-bottom: 20px; /* 下部にマージンを設定して、フォームとの間隔を作る */
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 form#locationForm {
-    width: 500px; /* フォームの最大幅を設定 */
-    margin: 0 auto; /* フォームを中央に配置 */
+    width: 500px;
+    margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
 }
@@ -33,19 +33,19 @@ label {
 
 input[type="text"],
 input[type="number"] {
-    width: calc(100% - 16px); /* 入力フィールドの幅を親要素に合わせて調整 */
+    width: calc(100% - 16px);
     padding: 8px;
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box; /* ボーダーとパディングを幅に含める */
+    box-sizing: border-box;
 }
 
 button {
-    display: block; /* ボタンをブロック要素として設定 */
-    width: auto; /* ボタンの幅を自動調整 */
+    display: block;
+    width: auto;
     padding: 10px 20px;
-    margin: 20px auto 0; /* 上部にマージンを設定し、中央に配置 */
+    margin: 20px auto 0;
     background-color: #007bff;
     color: white;
     border: none;
@@ -63,11 +63,11 @@ button:hover {
 #result .wrapper {
     text-align: center;
     padding: 10px;
-    margin: 20px auto; /* 上下のマージンを20pxに設定し、左右のマージンをautoで中央寄せ */
-    width: 400px; /* 結果表示部分の最大幅を設定 */
+    margin: 20px auto;
+    width: 400px;
     background-color: #f0f0f0;
     border-radius: 5px;
-    box-sizing: border-box; /* パディングとボーダーを幅に含める */
+    box-sizing: border-box;
 }
 
 #result div {
@@ -83,4 +83,19 @@ button:hover {
     margin-bottom: 5px;
 }
 
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
 
+.checkbox-container input[type="checkbox"] {
+    width: 14px;
+    height: 14px;
+    margin-right: 8px;
+}
+
+.checkbox-container label {
+    margin: 0;
+    line-height: 1.5;
+}

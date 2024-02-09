@@ -23,12 +23,16 @@
     <label for="maxDistance">最大距離:</label>
     <input type="number" id="maxDistance" name="maxDistance" required placeholder="20" step="any">
   </fieldset>
+  <!-- クッキーに保存するかどうかの選択 -->
+  <div class="checkbox-container">
+    <input type="checkbox" id="saveSettings" name="saveSettings">
+    <label for="saveSettings">設定をクッキーに保存する</label>
+  </div>
   <button type="submit">目的地を生成</button>
 </form>
 
 <!-- 結果表示部分 -->
 <div id="result"></div>
-
 
 <script src="main.js"></script>
 </body>

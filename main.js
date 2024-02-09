@@ -100,11 +100,22 @@ document.getElementById('locationForm').addEventListener('submit', function (eve
     window.open(`https://www.google.com/maps/dir/?api=1&origin=${originLat},${originLng}&destination=${destinationLat},${destinationLng}`, '_blank');
   };
 
-  // 入力値をクッキーに保存
-  setCookie('latitude', document.getElementById('latitude').value, 365);
-  setCookie('longitude', document.getElementById('longitude').value, 365);
-  setCookie('minDistance', document.getElementById('minDistance').value, 365);
-  setCookie('maxDistance', document.getElementById('maxDistance').value, 365);
+  // クッキーに保存するかどうかのチェックボックスの状態を確認
+  const shouldSaveSettings = document.getElementById('saveSettings').checked;
+
+  if (shouldSaveSettings) {
+    // チェックボックスがオンの場合、設定をクッキーに保存
+    setCookie('latitude', document.getElementById('latitude').value, 365);
+    setCookie('longitude', document.getElementById('longitude').value, 365);
+    setCookie('minDistance', document.getElementById('minDistance').value, 365);
+    setCookie('maxDistance', document.getElementById('maxDistance').value, 365);
+  } else {
+    // チェックボックスがオフの場合、クッキーを削除
+    setCookie('latitude', '', -1);
+    setCookie('longitude', '', -1);
+    setCookie('minDistance', '', -1);
+    setCookie('maxDistance', '', -1);
+  }
 });
 
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -112,15 +123,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
   if (getCookie('longitude')) document.getElementById('longitude').value = getCookie('longitude');
   if (getCookie('minDistance')) document.getElementById('minDistance').value = getCookie('minDistance');
   if (getCookie('maxDistance')) document.getElementById('maxDistance').value = getCookie('maxDistance');
+
+  // クッキーが存在する場合はクッキー保存のチェックボックスをチェック状態にする
+  const cookieExists = getCookie('latitude') || getCookie('longitude') || getCookie('minDistance') || getCookie('maxDistance');
+  document.getElementById('saveSettings').checked = !!cookieExists;
 });
 
-document.getElementById('getCurrentLocation').addEventListener('click', function() {
-  if ("geolocation" in navigator) {
-    navigator.geolocation.getCurrentPosition(function(position) {
+document.getElementById('getCurrentLocation').addEventListener('click', function () {
+  if ('geolocation' in navigator) {
+    navigator.geolocation.getCurrentPosition(function (position) {
       document.getElementById('latitude').value = position.coords.latitude.toFixed(6);
       document.getElementById('longitude').value = position.coords.longitude.toFixed(6);
-    }, function(error) {
-      console.error("Error Code = " + error.code + " - " + error.message);
+    }, function (error) {
+      console.error('Error Code = ' + error.code + ' - ' + error.message);
       alert('位置情報の取得に失敗しました。');
     });
   } else {
