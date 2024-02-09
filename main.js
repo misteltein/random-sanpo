@@ -41,12 +41,12 @@ document.getElementById('locationForm').addEventListener('submit', function (eve
 
   // ランダム地点を生成
   function generateRandomPoint(lat, lng, minDistance, maxDistance) {
-    let distance = Math.random() * (maxDistance - minDistance) + minDistance; // ランダムな距離
-    let bearing = Math.random() * 2 * Math.PI; // ランダムな方向 (ラジアン)
+    const distance = Math.random() * (maxDistance - minDistance) + minDistance; // ランダムな距離
+    const bearing = Math.random() * 2 * Math.PI; // ランダムな方向 (ラジアン)
 
-    let lat1 = lat * Math.PI / 180; // 緯度をラジアンに変換
-    let lng1 = lng * Math.PI / 180; // 経度をラジアンに変換
-    let dR = distance / 6371; // 距離を地球の半径で割ってラジアンに変換
+    const lat1 = lat * Math.PI / 180; // 緯度をラジアンに変換
+    const lng1 = lng * Math.PI / 180; // 経度をラジアンに変換
+    const dR = distance / 6371; // 距離を地球の半径で割ってラジアンに変換
 
     let newLat = Math.asin(Math.sin(lat1) * Math.cos(dR) + Math.cos(lat1) * Math.sin(dR) * Math.cos(bearing));
     let newLng = lng1 + Math.atan2(Math.sin(bearing) * Math.sin(dR) * Math.cos(lat1), Math.cos(dR) - Math.sin(lat1) * Math.sin(newLat));
@@ -56,20 +56,8 @@ document.getElementById('locationForm').addEventListener('submit', function (eve
     return {lat: newLat, lng: newLng};
   }
 
-  // ランダム地点の生成と距離の確認を行う
-  let attempts = 0;
-  let newPoint;
-  let distance;
-  do {
-    newPoint = generateRandomPoint(lat, lng, minDistance, maxDistance);
-    distance = haversineDistance(lat, lng, newPoint.lat, newPoint.lng);
-    attempts++;
-    // 無限ループ防止のための安全策
-    if (attempts > 100) {
-      alert('適切な地点が見つかりませんでした。パラメータを調整してください。');
-      return;
-    }
-  } while (distance < minDistance || distance > maxDistance);
+  const newPoint = generateRandomPoint(lat, lng, minDistance, maxDistance);
+  const distance = haversineDistance(lat, lng, newPoint.lat, newPoint.lng);
 
   // 結果を整理して表示
   const resultDiv = document.getElementById('result');
